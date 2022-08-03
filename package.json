@@ -3,12 +3,19 @@
   "version": "0.0.1",
   "description": "Enables TypeScript support in the Formidable framework",
   "main": "lib/index.js",
+  "bugs": "https://github.com/formidablejs/ts-ports/issues",
+  "homepage": "https://formidablejs.org",
+  "repository": "https://github.com/formidablejs/ts-ports",
+  "files": [
+    "lib",
+    "src"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
   "types": "lib/index.d.ts",
-  "keywords": [],
+  "keywords": ["Formidable", "TypeScript"],
   "author": "Donald Pakkies",
   "license": "MIT",
   "peerDependencies": {
