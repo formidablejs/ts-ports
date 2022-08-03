@@ -112,7 +112,7 @@ export const use = (...parameters: any) => {
                 args.push(reply);
             }
 
-            return value.apply(this, args);
+            return value.apply(target, args);
         };
 
         return propertyDescriptor;
