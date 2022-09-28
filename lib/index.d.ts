@@ -1,2 +1,3 @@
+import { TypeScriptPortsServiceResolver } from './TypeScriptPortsServiceResolver';
 import { use } from './Decorators/use';
-export { use };
+export { TypeScriptPortsServiceResolver, use };
