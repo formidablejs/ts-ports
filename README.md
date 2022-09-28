@@ -2,9 +2,13 @@
 
 `ts-ports` enables TypeScript support in the Formidable framework.
 
+![Build](https://github.com/formidablejs/ts-ports/actions/workflows/build.yml/badge.svg)
+![npm](https://img.shields.io/npm/v/@formidablejs/ts-ports)
+![GitHub](https://img.shields.io/github/license/formidablejs/ts-ports)
+
 ## Requirements
 
-- [@formidablejs/framework](https://www.npmjs.com/package/@formidablejs/framework): `>=0.11.x`
+- [@formidablejs/framework](https://www.npmjs.com/package/@formidablejs/framework): `>=0.12.x`
 
 ## Install
 
