@@ -44,7 +44,24 @@ Open the `package.json` file and add `"language": "TypeScript"`:
 }
 ```
 
+Finaly, open the `config/app.ts` config file and add `TypeScriptPortsServiceResolver` under resolvers:
+
+```ts
+...
+import { TypeScriptPortsServiceResolver } from '@formidablejs/ts-ports';
+
+export default {
+  ...
+  resolvers: {
+    ...,
+    TypeScriptPortsServiceResolver,
+    ...
+
+```
+
 ## Usage
+
+### `@use` Decorator
 
 The `use` decorator in `@formidablejs/ts-ports` works the same way as the `use` decorator in `@formidablejs/framework`. To get started, just import the `use` decorator from `@formidablejs/ts-ports` and add it next to any of your class functions:
 
@@ -58,6 +75,22 @@ export class UserController extends Controller {
     return (await user) || this.notFound("User not found.");
   }
 }
+```
+
+### Commands
+
+`ts-ports` also adds 2 new commands to your application.
+
+#### `make:interface`
+
+```bash
+node craftsman make:interface IUserController
+```
+
+#### `make:type`
+
+```bash
+node craftsman make:type User
 ```
 
 ## Security
