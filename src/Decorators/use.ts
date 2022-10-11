@@ -1,5 +1,4 @@
 import { FormRequest, Request, ValidationException } from "@formidablejs/framework";
-import type { FastifyRequest, FastifyReply } from "@formidablejs/framework";
 import { bind, isEmpty, isString} from "@formidablejs/framework/lib/Support/Helpers";
 import Bind from "@formidablejs/framework/lib/Database/Bind";
 
@@ -60,12 +59,6 @@ export const use = (...parameters: any) => {
                     response = request;
                     parsed.request = true;
                 } else if (object == FormRequest) {
-                    response = request;
-                    parsed.request = true;
-                } else if (object == FastifyReply) {
-                    response = reply;
-                    parsed.reply = true;
-                } else if (object == FastifyRequest) {
                     response = request;
                     parsed.request = true;
                 } else if (FormRequest.isPrototypeOf(object) || Request.isPrototypeOf(object)) {
