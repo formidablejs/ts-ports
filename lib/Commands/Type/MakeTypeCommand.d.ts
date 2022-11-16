@@ -10,6 +10,8 @@ export declare class MakeTypeCommand extends MakeResourceCommand {
      */
     get props(): {
         name: import("@formidablejs/console/types/Props/Prop").default;
+        definition: import("@formidablejs/console/types/Props/Prop").default;
+        schema: import("@formidablejs/console/types/Props/Prop").default;
     };
     /**
      * @inheritDoc

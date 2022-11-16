@@ -1,1 +1,1 @@
-type {{class}} = null
+type {{class}} = {{definition}}
