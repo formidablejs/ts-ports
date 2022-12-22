@@ -3,6 +3,18 @@ import { Stub } from '@formidablejs/stubs';
 
 export class Interface extends Stub {
     /**
+	 * @inheritdoc
+	 */
+	get props() {
+		return {
+			domain: {
+				type: String,
+				required: false
+			}
+		};
+	}
+
+    /**
      * @inheritDoc
      */
     get stub(): string {
@@ -22,6 +34,10 @@ export class Interface extends Stub {
      * @inheritDoc
      */
     get destination(): string {
+        if (this.options.domain) {
+			return `app/Domain/${this.options.domain}/Interfaces`;
+		}
+
         return 'app/Interfaces';
     }
 }

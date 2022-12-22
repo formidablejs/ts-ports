@@ -7,7 +7,7 @@ export class MakeTypeCommand extends MakeResourceCommand {
      * @inheritDoc
      */
     get signature(): string {
-        return 'make:type {name} {--definition} {--schema}'
+        return 'make:type {name} {--definition} {--schema} {?--domain}'
     }
 
     /**
@@ -17,7 +17,8 @@ export class MakeTypeCommand extends MakeResourceCommand {
         return {
             name: Prop.string().description('The name of the type'),
             definition: Prop.string().alias('d').description('Set type definition').nullable(),
-            schema: Prop.string().alias('s').description('Set type schema').nullable()
+            schema: Prop.string().alias('s').description('Set type schema').nullable(),
+            domain: Prop.string().nullable().description('Domain name')
         }
     }
 
@@ -42,6 +43,7 @@ export class MakeTypeCommand extends MakeResourceCommand {
         return new Type(this.argument('name'), {
             definition: this.option('definition', null),
             schema: this.option('schema', null),
+            domain: this.option('domain', null)
         }, 'type');
     }
 }
