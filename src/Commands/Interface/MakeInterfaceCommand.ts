@@ -7,7 +7,7 @@ export class MakeInterfaceCommand extends MakeResourceCommand {
      * @inheritDoc
      */
     get signature(): string {
-        return 'make:interface {name}'
+        return 'make:interface {name} {?--domain}'
     }
 
     /**
@@ -15,7 +15,8 @@ export class MakeInterfaceCommand extends MakeResourceCommand {
      */
     get props() {
         return {
-            name: Prop.string().description('The name of the interface')
+            name: Prop.string().description('The name of the interface'),
+            domain: Prop.string().alias('d').nullable().description('Domain name')
         }
     }
 
@@ -37,6 +38,8 @@ export class MakeInterfaceCommand extends MakeResourceCommand {
      * @inheritDoc
      */
     get stub() {
-        return new Interface(this.argument('name'), {}, 'interface');
+        return new Interface(this.argument('name'), {
+            domain: this.option('domain', null)
+        }, 'interface');
     }
 }

@@ -14,6 +14,10 @@ export class Type extends Stub {
 			schema: {
 				type: String,
 				required: false
+			},
+            domain: {
+				type: String,
+				required: false
 			}
 		};
 	}
@@ -95,6 +99,10 @@ export class Type extends Stub {
      * @inheritDoc
      */
     get destination(): string {
+        if (this.options.domain) {
+			return `app/Domain/${this.options.domain}/Types`;
+		}
+
         return 'app/Types';
     }
 
