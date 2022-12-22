@@ -16,7 +16,7 @@ export class MakeInterfaceCommand extends MakeResourceCommand {
     get props() {
         return {
             name: Prop.string().description('The name of the interface'),
-            domain: Prop.string().alias('d').nullable().description('Domain name')
+            domain: Prop.string().nullable().description('Domain name')
         }
     }
 

@@ -18,7 +18,7 @@ export class MakeTypeCommand extends MakeResourceCommand {
             name: Prop.string().description('The name of the type'),
             definition: Prop.string().alias('d').description('Set type definition').nullable(),
             schema: Prop.string().alias('s').description('Set type schema').nullable(),
-            domain: Prop.string().alias('d').nullable().description('Domain name')
+            domain: Prop.string().nullable().description('Domain name')
         }
     }
 
