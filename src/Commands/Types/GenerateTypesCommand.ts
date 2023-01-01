@@ -66,71 +66,73 @@ export class GenerateTypesCommand extends Command {
 				if (open) {
 					if (!line.trim().startsWith("return") && !line.trim().includes("{")) {
 						let prop = line.trim().split(':')[0]
-
-						const options = line.replace(/['"]/g, '')
+						let options = line.replace(/['"]/g, '')
 							.replace(/,\s*$/, "")
 							.trim()
 							.split(':')[1]
-							.split('|')
 
-						options.forEach((option, position) => {
-							options[position] = option.trim()
-						})
+						if (options) {
+							options = options.split('|')
 
-						prop = prop + (options.includes('nullable') ? '?' : '')
+							options.forEach((option, position) => {
+								options[position] = option.trim()
+							})
 
-						let propType
+							prop = prop + (options.includes('nullable') ? '?' : '')
 
-						if (
-							options.includes('string') ||
-							options.includes('alpha') ||
-							options.includes('alpha_dash') ||
-							options.includes('alpha_num') ||
-							options.includes('email') ||
-							options.includes('image') ||
-							options.includes('url')
-						) {
-							propType = 'string'
-						} else if (options.includes('array')) {
-							propType = 'Array<any>'
-						} else if (options.includes('boolean')) {
-							propType = 'boolean'
-						} else if (options.includes('numeric') || options.includes('number') || options.includes('integer')) {
-							propType = 'number'
-						} else if (options.includes('accepted')) {
-							propType = '"yes" | "on" | 1 | true'
-						} else {
-							for (let index = 0; index < options.length; index++) {
-								const option = options[index];
+							let propType
 
-								if (
-									option.startsWith("between:") ||
-									option.startsWith("digits:") ||
-									option.startsWith("digits_between:") ||
-									option.startsWith("file_size:") ||
-									option.startsWith("max:") ||
-									option.startsWith("min:") ||
-									option.startsWith("size:")
-								) {
-									propType = 'number'
-								} else if (
-									option.startsWith("in:") ||
-									option.startsWith("not_in:")
-								) {
-									propType = 'string | number'
-								} else if (
-									option.startsWith("regex:") ||
-									option.startsWith("same:") ||
-									option.startsWith("different:")
-								) {
-									propType = 'string'
-								} else {
-									propType = 'any'
+							if (
+								options.includes('string') ||
+								options.includes('alpha') ||
+								options.includes('alpha_dash') ||
+								options.includes('alpha_num') ||
+								options.includes('email') ||
+								options.includes('image') ||
+								options.includes('url')
+							) {
+								propType = 'string'
+							} else if (options.includes('array')) {
+								propType = 'Array<any>'
+							} else if (options.includes('boolean')) {
+								propType = 'boolean'
+							} else if (options.includes('numeric') || options.includes('number') || options.includes('integer')) {
+								propType = 'number'
+							} else if (options.includes('accepted')) {
+								propType = '"yes" | "on" | 1 | true'
+							} else {
+								for (let index = 0; index < options.length; index++) {
+									const option = options[index];
+
+									if (
+										option.startsWith("between:") ||
+										option.startsWith("digits:") ||
+										option.startsWith("digits_between:") ||
+										option.startsWith("file_size:") ||
+										option.startsWith("max:") ||
+										option.startsWith("min:") ||
+										option.startsWith("size:")
+									) {
+										propType = 'number'
+									} else if (
+										option.startsWith("in:") ||
+										option.startsWith("not_in:")
+									) {
+										propType = 'string | number'
+									} else if (
+										option.startsWith("regex:") ||
+										option.startsWith("same:") ||
+										option.startsWith("different:")
+									) {
+										propType = 'string'
+									} else {
+										propType = 'any'
+									}
 								}
 							}
-						}
 
-						type.push({ [`/** @rules ${options.join('|')} */\n\t${prop}`]: propType })
+							type.push({ [`/** @rules ${options.join('|')} */\n\t${prop}`]: propType })
+						}
 					}
 				}
 			}
