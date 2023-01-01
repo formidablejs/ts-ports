@@ -1,6 +1,6 @@
 {
   "name": "@formidablejs/ts-ports",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Enables TypeScript support in the Formidable framework",
   "main": "lib/index.js",
   "bugs": "https://github.com/formidablejs/ts-ports/issues",
