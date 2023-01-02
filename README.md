@@ -93,6 +93,16 @@ node craftsman make:interface IUserController
 node craftsman make:type User
 ```
 
+#### `types:generate`
+
+```bash
+node craftsman types:generate
+```
+
+This will generate types based on the rules of your `requests`.
+
+> Works with TypeScript only
+
 ## Security
 
 If you discover any security related issues, please email donaldpakkies@gmail.com instead of using the issue tracker.
