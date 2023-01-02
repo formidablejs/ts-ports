@@ -71,7 +71,7 @@ export class GenerateTypesCommand extends Command {
 							.trim()
 							.split(':')[1]
 
-						if (options) {
+						if (options && /[a-zA-Z\$\_]/.test(prop[0])) {
 							options = options.split('|')
 
 							options.forEach((option, position) => {
