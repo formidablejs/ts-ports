@@ -66,10 +66,19 @@ export class GenerateTypesCommand extends Command {
 				if (open) {
 					if (!line.trim().startsWith("return") && !line.trim().includes("{")) {
 						let prop = line.trim().split(':')[0]
-						let options = line.replace(/['"]/g, '')
+						let originalOptions = line.replace(/['"]/g, '')
 							.replace(/,\s*$/, "")
 							.trim()
-							.split(':')[1]
+
+						let options = originalOptions.split(':')
+
+						options = originalOptions.slice(options[0].length)
+
+						if (options[0] == ':') {
+							options = options.slice(1)
+						}
+
+						options.trim()
 
 						if (options && /[a-zA-Z\$\_]/.test(prop[0])) {
 							options = options.split('|')
@@ -131,7 +140,7 @@ export class GenerateTypesCommand extends Command {
 								}
 							}
 
-							type.push({ [`/** @rules ${options.join('|')} */\n\t${prop}`]: propType })
+							type.push({ [`/** @rules ${options.join('|')} */\n\t${prop.trim()}`]: propType })
 						}
 					}
 				}
