@@ -1,11 +1,11 @@
-import { Command } from '@formidablejs/framework'
+import { Command, Prop } from '@formidablejs/framework'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { dirname, join, normalize } from 'path'
 import { sync } from 'glob'
 
 export class GenerateTypesCommand extends Command {
 	get signature(): string {
-		return 'types:generate'
+		return 'types:generate {--export}'
 	}
 
 	get description(): string {
@@ -14,7 +14,7 @@ export class GenerateTypesCommand extends Command {
 
 	get props(): object {
 		return {
-
+			export: Prop.boolean().description('Export types')
 		}
 	}
 
@@ -177,9 +177,11 @@ export class GenerateTypesCommand extends Command {
 				}
 			}
 
+			const ex = this.option('export') ? 'export ' : ''
+
 			const builder = [
 				"// Auto-Generated: " + (new Date).toISOString() + "\n",
-				`type ${Object.keys(type)[0]} = {`
+				`${ex}type ${Object.keys(type)[0]} = {`
 			]
 
 			Object.values(type)[0].forEach((line) => {
