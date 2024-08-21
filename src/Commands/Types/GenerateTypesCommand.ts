@@ -165,6 +165,7 @@ export class GenerateTypesCommand extends Command {
 		const types = this.types;
 
 		for (let index = 0; index < types.length; index++) {
+			let compare
 			const type = types[index];
 			const name = Object.keys(type)[0] + '.ts'
 			const filePath = join(process.cwd(), "app", "Types", "Forms", name)
@@ -175,6 +176,8 @@ export class GenerateTypesCommand extends Command {
 				if (!existingType.toString().startsWith('// Auto-Generated: ')) {
 					return
 				}
+
+				compare = existingType.toString()
 			}
 
 			const ex = this.option('export') ? 'export ' : ''
@@ -197,6 +200,13 @@ export class GenerateTypesCommand extends Command {
 			}
 
 			const contents = builder.join('\n')
+
+			if (
+				compare &&
+				contents.split('\n').slice(2).join('\n') == compare.split('\n').slice(2).join('\n')
+			) {
+				return
+			}
 
 			writeFileSync(normalize(filePath), contents)
 		}
