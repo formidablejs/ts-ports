@@ -1,4 +1,4 @@
-import { Command, Prop } from '@formidablejs/framework'
+import { Command, Prop, PropList } from '@formidablejs/framework'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { dirname, join, normalize } from 'path'
 import { sync } from 'glob'
@@ -12,7 +12,7 @@ export class GenerateTypesCommand extends Command {
 		return 'Generate form types'
 	}
 
-	get props(): object {
+	get props(): PropList {
 		return {
 			export: Prop.boolean().description('Export types')
 		}
@@ -72,15 +72,18 @@ export class GenerateTypesCommand extends Command {
 
 						let options = originalOptions.split(':')
 
+						// @ts-ignore
 						options = originalOptions.slice(options[0].length)
 
 						if (options[0] == ':') {
 							options = options.slice(1)
 						}
 
+						// @ts-ignore
 						options.trim()
 
 						if (options && /[a-zA-Z\$\_]/.test(prop[0])) {
+							// @ts-ignore
 							options = options.split('|')
 
 							options.forEach((option, position) => {
@@ -187,6 +190,7 @@ export class GenerateTypesCommand extends Command {
 				`${ex}type ${Object.keys(type)[0]} = {`
 			]
 
+			// @ts-ignore
 			Object.values(type)[0].forEach((line) => {
 				builder.push("\t" + Object.entries(line)[0].join(': '))
 			})

@@ -38,7 +38,9 @@ export class MakeInterfaceCommand extends MakeResourceCommand {
      * @inheritDoc
      */
     get stub() {
+        // @ts-ignore
         return new Interface(this.argument('name'), {
+            // @ts-ignore
             domain: this.option('domain', null)
         }, 'interface');
     }

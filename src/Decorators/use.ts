@@ -1,3 +1,4 @@
+// @ts-ignore
 import { FormRequest, Request, ValidationException } from "@formidablejs/framework";
 import { bind, isEmpty, isString} from "@formidablejs/framework/lib/Support/Helpers";
 import Bind from "@formidablejs/framework/lib/Database/Bind";
@@ -39,7 +40,7 @@ export const use = (...parameters: any) => {
                 } else if (object === Number) {
                     const param = Object.values(request.params())[key] || undefined;
 
-                    if (isNaN(param)) {
+                    if (isNaN(param as number)) {
                         throw new TypeError(("Argument " + (key++) + " must be of the type Number."))
                     };
 
@@ -48,7 +49,7 @@ export const use = (...parameters: any) => {
 
                     const param = Object.values(request.params())[key] || undefined;
 
-                    if (!(isNaN(param))) {
+                    if (!(isNaN(param as number))) {
                         throw new TypeError(("Argument " + (key++) + " must be of the type String."))
                     };
 

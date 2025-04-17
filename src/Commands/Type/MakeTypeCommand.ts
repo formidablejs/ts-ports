@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Prop } from '@formidablejs/console';
 import { MakeResourceCommand } from '@formidablejs/framework/lib/Foundation/Console/Commands/MakeResourceCommand';
 import { Type } from './Type'
@@ -40,9 +41,13 @@ export class MakeTypeCommand extends MakeResourceCommand {
      * @inheritDoc
      */
     get stub() {
+        // @ts-ignore
         return new Type(this.argument('name'), {
+            // @ts-ignore
             definition: this.option('definition', null),
+            // @ts-ignore
             schema: this.option('schema', null),
+            // @ts-ignore
             domain: this.option('domain', null)
         }, 'type');
     }
