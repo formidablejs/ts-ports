@@ -4,15 +4,17 @@
     "emitDeclarationOnly": true,
     "allowJs": true,
     "compilerOptions": {
+        "skipLibCheck": true,
+        "noEmitOnError": false,
         "experimentalDecorators": true,
         "target": "ES2022",
         "module": "commonjs",
         "declaration": true,
         "outDir": "./lib",
-        "strict": true,
-        "typeRoots": [
-            "node_modules/@formidablejs/framework/types",
-            "node_modules/@types",
+        "strict": false,
+        "types": [
+            "node",
+            "@formidablejs/framework"
         ]
     },
     "include": [
